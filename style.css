@@ -1,0 +1,332 @@
+/* Reset & basic */
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg,#0d0d0d,#1a1a1a);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 10px;
+    transition: all 0.2s;
+}
+
+/* Tabs */
+#tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.tab-button.active {
+    background: #00ffcc;
+    color: #111;
+}
+
+/* Tab content */
+.tab-content {
+    display: none;
+    width: 100%;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Main layout */
+#main {
+    display: flex;
+    flex-direction: row;
+    width: 95vw;
+    max-width: 1400px;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* Times list */
+#times-section {
+    width: 250px;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    padding-right: 15px;
+    overflow-y: auto;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#times-section h3 {
+    text-align: center;
+    font-weight: 400;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.time-item {
+    margin: 5px 0;
+    padding: 5px 10px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.time-buttons button {
+    margin-left: 5px;
+    padding: 2px 6px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    transition: all 0.2s;
+}
+
+.time-buttons button:hover {
+    background: rgba(0,255,204,0.2);
+}
+
+/* Current section */
+#current-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#scramble-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+#scramble {
+    font-size: 1.4rem;
+    text-align: center;
+    color: #aaa;
+    max-width: 500px;
+    word-wrap: break-word;
+}
+
+#nextScrambleBtn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(0,255,204,0.1);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+#nextScrambleBtn:hover {
+    background: rgba(0,255,204,0.2);
+}
+
+/* Timer container */
+#timer-container {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+#timer {
+    font-size: 5rem;
+    cursor: pointer;
+    user-select: none;
+    padding: 20px 40px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    box-shadow: 0 0 30px rgba(0,255,255,0.1);
+    text-align: center;
+    transition: box-shadow 0.3s ease, background 0.3s ease, color 0.2s ease;
+}
+
+#timer.redHold {
+    color: #ff4c4c;
+    box-shadow: 0 0 50px #ff4c4c;
+}
+
+#timer.greenHold {
+    color: #00ff99;
+    box-shadow: 0 0 50px #00ff99;
+}
+
+#timer.white {
+    color: #fff;
+    background: rgba(255,255,255,0.05);
+    box-shadow: 0 0 30px rgba(0,255,255,0.1);
+}
+
+#timer.inspectionNumber {
+    color: yellow;
+    background: none;
+}
+
+/* Manual input */
+#manualTimeInput {
+    font-size: 5rem;
+    width: 300px;
+    text-align: center;
+    border-radius: 20px;
+    border: none;
+    padding: 20px;
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    outline: none;
+    display: none;
+    box-shadow: 0 0 30px rgba(0,255,255,0.1);
+    transition: box-shadow 0.3s ease, background 0.3s ease, color 0.2s ease;
+}
+
+/* Big horizontal display when timer/inspection active */
+.focused #timer, .focused #manualTimeInput {
+    font-size: 14rem;
+    padding: 80px 0;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    transition: none; /* instant change for font-size/padding to avoid extra timer time */
+}
+
+/* Averages grid */
+#averages-grid {
+    display: flex;
+    gap: 40px;
+    margin-top: 25px;
+    justify-content: center;
+}
+
+.avg-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.avg-box {
+    background: rgba(255,255,255,0.05);
+    padding: 10px 15px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px;
+    font-weight: 500;
+    box-shadow: 0 0 20px rgba(0,255,255,0.1);
+}
+
+.avg-box span:first-child {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+.avg-box span:last-child {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.center-box {
+    margin-top: 20px;
+    width: 150px;
+}
+
+/* Graph */
+#graph-container {
+    width: 95vw;
+    height: 70vh;
+    margin-top: 20px;
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+/* Settings Tab */
+#settings-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+#inspection-settings button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+#inspection-settings button.active {
+    background: #00ffcc;
+    color: #111;
+}
+
+#timer-mode-settings {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#mode-label {
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.mode-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.mode-button.active {
+    background: #00ffcc;
+    color: #111;
+}
+
+/* Full-screen focus when timer running */
+.focused body, .focused #tabs, .focused #times-section, .focused #averages-grid,
+.focused .center-box, .focused #scramble-section, .focused #inspection-settings, 
+.focused #timer-mode-settings, .focused #graph-container {
+    display: none !important;
+}
+
+.focused #current-section {
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    width:100%;
+}
