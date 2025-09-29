@@ -12,6 +12,7 @@
     <button class="tab-button active" data-tab="timer-tab">Timer</button>
     <button class="tab-button" data-tab="stats-tab">Stats</button>
     <button class="tab-button" data-tab="settings-tab">Settings</button>
+    <button class="tab-button" data-tab="eg1-tab">EG1</button>
   </div>
 
   <!-- Tab Contents -->
@@ -90,8 +91,35 @@
         </div>
       </div>
     </div>
+
+    <!-- EG1 Tab -->
+    <div class="tab-content" id="eg1-tab">
+      <div id="eg1-container">
+        <!-- Your eg1.js will populate algorithm images and moves here -->
+      </div>
+    </div>
   </div>
 
 <script src="script.js"></script>
+<script src="eg1.js"></script>
+<script>
+  // Tab switching logic
+  const tabs = document.querySelectorAll(".tab-button");
+  const contents = document.querySelectorAll(".tab-content");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      contents.forEach(c => c.classList.remove("active"));
+      document.getElementById(tab.dataset.tab).classList.add("active");
+    });
+  });
+
+  // Initialize EG1 content if your eg1.js provides a function
+  if (typeof initializeEG1 === "function") {
+    initializeEG1(document.getElementById("eg1-container"));
+  }
+</script>
 </body>
 </html>
